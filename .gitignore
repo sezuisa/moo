@@ -19,7 +19,7 @@ local.properties
 
 # Windows thumbnail db
 Thumbs.db
-                
+
 # OSX files
 .DS_Store
 

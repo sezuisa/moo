@@ -1,3 +1,3 @@
 # moo
 
-This is a README, woohoo!
+moo is - or rather will be - a daily mood tracker.
