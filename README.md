@@ -12,9 +12,9 @@ moo is - or rather will be - a daily mood tracker.
 
 *Card-Objects*
 
-| attribute | data type | vals                   |
-|-----------|-----------|------------------------|
-| date      | Date      |                        |
-| mood      | String    | happy, neutral unhappy |
-| highlight | String    |                        |
-| notes     | String    |                        |
+| attribute | data type     | vals                   |
+|-----------|---------------|------------------------|
+| date      | LocalDateTime |                        |
+| mood      | String        | happy, neutral unhappy |
+| highlight | String        |                        |
+| notes     | String        |                        |
