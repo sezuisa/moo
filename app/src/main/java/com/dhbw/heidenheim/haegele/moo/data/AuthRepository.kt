@@ -1,4 +1,4 @@
-package com.dhbw.heidenheim.haegele.moo.data
+package com.mongodb.app.data
 
 import com.dhbw.heidenheim.haegele.moo.app
 import io.realm.kotlin.mongodb.Credentials

@@ -4,4 +4,7 @@
     <string name="how_are_you">How are you feeling today?</string>
     <string name="date">21. February 2023</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet consectetur. Faucibus quam fermentum dignissim pellentesque pulvinar ut posuere magna. Id magna pellentesque integer enim. A arcu tristique donec in tristique etiam nulla. Diam est bibendum nec nunc sit. Velit ac tristique non turpis sapien odio euismod.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

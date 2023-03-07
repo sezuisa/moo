@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Moo.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Moo.AppWidgetContainer">
+
+
+    <LinearLayout
+        android:id="@+id/linearContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageButton
+            android:id="@+id/wbtnHappy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/smiley"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+
+            />
+        <ImageButton
+            android:id="@+id/wbtnNeutral"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/smiley"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+
+            />
+        <ImageButton
+            android:id="@+id/wbtnSad"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/smiley"
+            android:scaleType="fitXY"
+            android:layout_weight="1"
+
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
