@@ -1,0 +1,12 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_spot_top"
+        android:gravity="top"/>
+    <item android:drawable="@drawable/bg_spot_right"
+        android:gravity="right|center_vertical"
+        android:width="100dp"/>
+    <item android:drawable="@drawable/bg_spot_left"
+        android:width="200dp"
+        android:height="170dp"
+        android:bottom="125dp"
+        android:gravity="left|bottom"/>
+</layer-list>

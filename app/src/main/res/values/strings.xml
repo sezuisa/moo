@@ -1,10 +1,27 @@
 <resources>
     <string name="app_name">Moo</string>
-    <string name="hello">Hello, Sarah!</string>
+    <string name="hello">Hello, %1$s!</string>
     <string name="how_are_you">How are you feeling today?</string>
     <string name="date">21. February 2023</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet consectetur. Faucibus quam fermentum dignissim pellentesque pulvinar ut posuere magna. Id magna pellentesque integer enim. A arcu tristique donec in tristique etiam nulla. Diam est bibendum nec nunc sit. Velit ac tristique non turpis sapien odio euismod.</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="highlight_header">Today\'s highlight</string>
+    <string name="highlight_text">Fancy dinner</string>
+    <string name="statistics">Statistics</string>
+    <string name="duration">Week</string>
+    <string name="statistics_highlights">Highlights</string>
+    <string name="statistics_mood">Most common mood</string>
+    <string name="statistics_happydays">Happy-Days</string>
+    <string name="statistics_memory">A happy memory</string>
+    <string name="statistics_happydays_num">2</string>
+    <string name="statistics_memory_content">Great workout</string>
+    <string name="history">History</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_highlight_hint">Enter something!</string>
+    <string name="main_note_hint">Say something about your day.</string>
+    <string name="preferences_header">Preferences</string>
+    <string name="history_subtitle">Your cards from recent days.</string>
+    <string name="statistics_subtitle">A summary of your moods.</string>
 </resources>

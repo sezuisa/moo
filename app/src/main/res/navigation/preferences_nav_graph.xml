@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/preferences_nav_graph"
+    app:startDestination="@id/wrapperContentFragment">
+
+    <fragment
+        android:id="@+id/wrapperContentFragment"
+        android:name="com.dhbw.heidenheim.haegele.moo.WrapperContentFragment"
+        android:label="fragment_wrapper_content"
+        tools:layout="@layout/fragment_wrapper_content" >
+        <action
+            android:id="@+id/main_to_preferences"
+            app:destination="@id/wrapperPreferencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wrapperPreferencesFragment"
+        android:name="com.dhbw.heidenheim.haegele.moo.WrapperPreferencesFragment"
+        android:label="fragment_wrapper_preferences"
+        tools:layout="@layout/fragment_wrapper_preferences" >
+        <action
+            android:id="@+id/preferences_to_main"
+            app:destination="@id/wrapperContentFragment" />
+    </fragment>
+</navigation>
