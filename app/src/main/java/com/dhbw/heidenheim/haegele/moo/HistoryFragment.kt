@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
-import com.dhbw.heidenheim.haegele.moo.data.card.*
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentHistoryBinding
 import com.yuyakaido.android.cardstackview.*
