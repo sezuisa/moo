@@ -3,7 +3,7 @@
     style="@style/Widget.Moo.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/brown"
+    android:backgroundTint="@color/white"
     android:theme="@style/Theme.Moo.AppWidgetContainer">
 
 
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         >
 
         <ImageButton
@@ -19,20 +20,19 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@drawable/ic_happy"
-            android:backgroundTint="@color/brown"
+            android:backgroundTint="@color/white"
             android:tint="@color/green"
-            android:scaleType="fitXY"
-            android:layout_weight="1" />
+            android:scaleType="fitXY" />
 
         <ImageButton
             android:id="@+id/wbtnNeutral"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@drawable/ic_neutral"
-            android:backgroundTint="@color/brown"
+            android:backgroundTint="@color/white"
             android:tint="@color/yellow"
             android:scaleType="fitXY"
-            android:layout_weight="1"
+
             />
 
         <ImageButton
@@ -40,10 +40,10 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@drawable/ic_unhappy"
-            android:backgroundTint="@color/brown"
+            android:backgroundTint="@color/white"
             android:tint="@color/red"
             android:scaleType="fitXY"
-            android:layout_weight="1"
+
 
             />
     </LinearLayout>
