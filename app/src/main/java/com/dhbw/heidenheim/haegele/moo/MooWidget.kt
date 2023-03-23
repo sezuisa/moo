@@ -43,7 +43,6 @@ class MooWidget : AppWidgetProvider() {
         val repository = syncRealmController.getRepo()
         if (context != null && action == "addHappyCard") {
             Log.d("Tag", "Widget Clicked")
-            //TODO call addCard from sync repo
 
             GlobalScope.launch {
                 repository.addCard("","","happy")
@@ -52,7 +51,7 @@ class MooWidget : AppWidgetProvider() {
         }
         if (context != null && action == "addUnhappyCard") {
             Log.d("Tag", "Widget Clicked")
-            //TODO call addCard from sync repo
+
             GlobalScope.launch {
                 repository.addCard("","","unhappy")
 
@@ -60,7 +59,7 @@ class MooWidget : AppWidgetProvider() {
         }
         if (context != null && action == "addNeutralCard") {
             Log.d("Tag", "Widget Clicked")
-            //TODO call addCard from sync repo
+
             GlobalScope.launch {
                 repository.addCard("","","neutral")
 

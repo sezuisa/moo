@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.Moo.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
     android:theme="@style/Theme.Moo.AppWidgetContainer">
 
 
@@ -10,33 +12,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         >
 
         <ImageButton
             android:id="@+id/wbtnHappy"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/smiley"
-            android:scaleType="fitXY"
-            android:layout_weight="1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_happy"
+            android:backgroundTint="@color/white"
+            android:tint="@color/ic_green"
+            android:scaleType="fitXY" />
 
-            />
         <ImageButton
             android:id="@+id/wbtnNeutral"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/smiley"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_neutral"
+            android:backgroundTint="@color/white"
+            android:tint="@color/ic_yellow"
             android:scaleType="fitXY"
-            android:layout_weight="1"
 
             />
+
         <ImageButton
             android:id="@+id/wbtnSad"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/smiley"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/ic_unhappy"
+            android:backgroundTint="@color/white"
+            android:tint="@color/ic_red"
             android:scaleType="fitXY"
-            android:layout_weight="1"
+
 
             />
     </LinearLayout>

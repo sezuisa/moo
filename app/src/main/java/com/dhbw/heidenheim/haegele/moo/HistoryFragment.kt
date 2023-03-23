@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentHistoryBinding
 import com.yuyakaido.android.cardstackview.*
-import java.time.LocalDateTime
 
 class HistoryFragment : Fragment(), CardStackListener {
 
@@ -118,127 +118,15 @@ class HistoryFragment : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
-    private fun reload() {
-        val old = adapter.getCards()
-        val new = createCards()
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun addFirst(size: Int) {
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            for (i in 0 until size) {
-                add(manager.topPosition, createCard())
-            }
-        }
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun addLast(size: Int) {
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            addAll(List(size) { createCard() })
-        }
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun removeFirst(size: Int) {
-        if (adapter.getCards().isEmpty()) {
-            return
-        }
-
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            for (i in 0 until size) {
-                removeAt(manager.topPosition)
-            }
-        }
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun removeLast(size: Int) {
-        if (adapter.getCards().isEmpty()) {
-            return
-        }
-
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            for (i in 0 until size) {
-                removeAt(this.size - 1)
-            }
-        }
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun replace() {
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            removeAt(manager.topPosition)
-            add(manager.topPosition, createCard())
-        }
-        adapter.setCards(new)
-        adapter.notifyItemChanged(manager.topPosition)
-    }
-
-    private fun swap() {
-        val old = adapter.getCards()
-        val new = mutableListOf<Item>().apply {
-            addAll(old)
-            val first = removeAt(manager.topPosition)
-            val last = removeAt(this.size - 1)
-            add(manager.topPosition, last)
-            add(first)
-        }
-        val callback = CardDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setCards(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-
-    private fun createCard(): Item {
-        val item = Item()
-        item.mood = "happy"
-        item.note = "Jimmy Changa, bitches!"
-        val now = LocalDateTime.now().toString()
-        item.creationTimeStamp = now
-        item.highlight = "Dinner"
-        return item
-    }
-
+    val syncRealmController = SyncRealmController()
+    val repository = syncRealmController.getRepo()
     private fun createCards(): List<Item> {
-        val cards = ArrayList<Item>()
+        var cards: ArrayList<Item>
         val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val depth = sp.getInt("history_depth", 4)
 
-        for (i in 1..depth) {
-            val item = Item()
-            item.mood = "happy"
-            item.note = "Jimmy Changa, bitches!"
-            val now = LocalDateTime.now().toString()
-            item.creationTimeStamp = now
-            item.highlight = "Dinner $i"
-            cards.add(item)
-        }
+        cards = repository.getCardList(depth)!!
+
         return cards
     }
 }

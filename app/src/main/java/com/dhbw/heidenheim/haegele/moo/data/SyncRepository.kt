@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import kotlin.time.Duration.Companion.seconds
 
@@ -31,7 +32,7 @@ interface SyncRepository {
     /**
      * Returns a flow with the tasks for the current subscription.
      */
-    fun getCardList(): Flow<ResultsChange<Item>>
+    fun getCardList(depth: Int): ArrayList<Item>?
 
     /**
      * Adds a task that belongs to the current user using the specified [taskSummary].
@@ -107,10 +108,19 @@ class RealmSyncRepository(
         }
     }
 
-    override fun getCardList(): Flow<ResultsChange<Item>> {
-        return realm.query<Item>()
-            .sort(Pair("_id", Sort.ASCENDING))
-            .asFlow()
+    override fun getCardList(depth: Int): ArrayList<Item>? {
+        val items = realm.query<Item>("owner_id == $0", currentUser.id).find().toList()
+        val itemOfTheDay = items.find { it.sameDay(LocalDateTime.now().toString()) }
+        val dateComparator = Comparator<Item> { item1, item2 ->
+            val dateParser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+            dateParser.parse(item1.creationTimeStamp).compareTo(dateParser.parse(item2.creationTimeStamp))
+        }
+        val slicedItems = items.sortedWith(dateComparator)
+            .reversed()
+            .take(depth + if (itemOfTheDay != null) 1 else 0)
+            .toMutableList()
+            .apply { itemOfTheDay?.let(::remove) }
+        return ArrayList(slicedItems)
     }
 
     fun getCards(): RealmResults<Item> {
@@ -126,28 +136,36 @@ class RealmSyncRepository(
             this.creationTimeStamp = now
         }
         Log.d("Tag", "Add card to list ")
-        val items: RealmResults<Item>  = realm.query<Item>().find()
-        var matchedItem : Item? = null
-        items.forEach {
-            if(gotItem.sameDay(it.creationTimeStamp)){
-                Log.d("Tag", "Found same item !")
-                matchedItem = it
-                //check for changes for the new item
-                // if no changes override that with the initial card of the current date
-                if (gotItem.highlight == ""){
-                    gotItem.highlight = it.highlight
-                }
-                if ( gotItem.note == ""){
-                    gotItem.note = it.note
-                }
 
+        val items: RealmResults<Item> = realm.query<Item>("owner_id == $0", currentUser.id)
+            .find()
+
+        Log.d("Tag", "Found ${items.count()} Items")
+
+        var matchedItem: Item? = null
+
+        items.forEach { item ->
+            if (gotItem.sameDay(item.creationTimeStamp)) {
+                Log.d("Tag", "Found same item!")
+                matchedItem = item
+
+                // Check for changes and update gotItem if necessary
+                if (gotItem.highlight == "" || gotItem.note == "" || gotItem.mood == "") {
+                    gotItem.highlight = gotItem.highlight.takeIf { it.isNotBlank() } ?: item.highlight
+                    gotItem.note = gotItem.note.takeIf { it.isNotBlank() } ?: item.note
+                    gotItem.mood = gotItem.mood.takeIf { it.isNotBlank() } ?: item.mood
+                }
             }
         }
-        // remove initial item if
-        if (matchedItem != null) {
+
+// Remove old item if it was found
+        matchedItem?.let {
             Log.d("Tag", "Remove old item")
-            deleteItem(matchedItem!!)
+            deleteItem(it)
         }
+
+        Log.d("Tag", "Write to Realm")
+
         realm.write {
             copyToRealm(gotItem)
         }
@@ -201,6 +219,8 @@ class RealmSyncRepository(
             SubscriptionType.ALL -> realm.query()
         }
 }
+
+
 
 
 /**

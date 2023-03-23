@@ -2,20 +2,21 @@ package com.dhbw.heidenheim.haegele.moo
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.preference.PreferenceManager
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityMainBinding
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentMainBinding
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
@@ -41,10 +42,13 @@ class MainFragment : Fragment() {
         val syncRealmController = SyncRealmController()
         val repository = syncRealmController.getRepo()
 
+        //set the current Date to the TextView
+        binding.dateOfCard.text = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy") )
+
         binding.icHappy.setOnClickListener {
             Log.d("TAG", "ImageView Happy clicked!")
             lifecycleScope.launch {
-                repository.addCard("hier ist echt viel Staub","Staubsaugen","happy")
+                repository.addCard("","","happy")
 
             }
 
@@ -52,15 +56,39 @@ class MainFragment : Fragment() {
         binding.icUnhappy.setOnClickListener {
             Log.d("TAG", "ImageView Unhappy clicked!")
             lifecycleScope.launch {
-                repository.addCard("hier ist echt viel Staub","Staubsaugen","unhappy")
+                repository.addCard("","","unhappy")
 
             }
         }
         binding.icNeutral.setOnClickListener {
             Log.d("TAG", "ImageView Neutral clicked!")
             lifecycleScope.launch {
-                repository.addCard("hier ist echt viel Staub","Staubsaugen","neutral")
+                repository.addCard("","","neutral")
 
+            }
+        }
+
+        binding.mainHighlight.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val editTextHighlight = binding.mainHighlight.text.toString()
+                Log.d("TAG", "Highlight Text Changed")
+                lifecycleScope.launch {
+                    repository.addCard("",editTextHighlight,"")
+
+                }
+                Toast.makeText(context, "Highlight added", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.txtFreetext.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val editFreeText = binding.txtFreetext.text.toString()
+                Log.d("TAG", "Notes FreeText Changed")
+                lifecycleScope.launch {
+                    repository.addCard(editFreeText,"","")
+
+                }
+                Toast.makeText(context, "Note added", Toast.LENGTH_SHORT).show()
             }
         }
 
