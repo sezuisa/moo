@@ -43,15 +43,15 @@ class LoginFragment : Fragment() {
 
             CoroutineScope(Dispatchers.Main).launch {
                 if (createAccount(email, password)) {
-                    if (!isAdded) return@launch
+                    if (!isAdded) { return@launch }
                     activity?.runOnUiThread {
-                        Toast.makeText(view.context, R.string.login_toast, Toast.LENGTH_SHORT)
+                        Toast.makeText(view.context, R.string.register_toast, Toast.LENGTH_SHORT)
                             .show()
                     }
                     it.findNavController().navigate(R.id.login_to_app)
                     (activity as LoginActivity).finish()
                 } else
-                    if (!isAdded) return@launch
+                    if (!isAdded) { return@launch }
                     activity?.runOnUiThread {
                         Toast.makeText(view.context, R.string.register_toast, Toast.LENGTH_SHORT)
                             .show()
@@ -67,16 +67,16 @@ class LoginFragment : Fragment() {
 
             CoroutineScope(Dispatchers.Main).launch {
                 if(login(email, password)){
-                    if (!isAdded) return@launch
+                    if (!isAdded) { return@launch }
                     activity?.runOnUiThread {
-                        Toast.makeText(view.context, R.string.hello, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(view.context, R.string.login_toast, Toast.LENGTH_SHORT).show()
                     }
                     it.findNavController().navigate(R.id.login_to_app)
                     (activity as LoginActivity).finish()
                 }else{
-                    if (!isAdded) return@launch
+                    if (!isAdded) { return@launch }
                     activity?.runOnUiThread  {
-                        Toast.makeText(view.context, R.string.app_name, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(view.context, R.string.login_toast, Toast.LENGTH_SHORT).show()
                     }
                 }
 

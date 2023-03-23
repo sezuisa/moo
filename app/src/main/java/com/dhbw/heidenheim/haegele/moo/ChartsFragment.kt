@@ -1,20 +1,23 @@
 package com.dhbw.heidenheim.haegele.moo
 
-import android.content.res.AssetManager
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
+import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentChartsBinding
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import kotlinx.coroutines.launch
 
 
 class ChartsFragment : Fragment() {
@@ -36,90 +39,128 @@ class ChartsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentChartsBinding.inflate(inflater, container, false)
 
-        val chart: LineChart = binding.chart
+        // chart
+        var lineData: LineData
 
-//        Typeface.createFromAsset(context?.assets, "font/arial_rounded_bold.ttf")
-        val mTf: Typeface? = ResourcesCompat.getFont(requireContext(), R.font.arial_rounded_bold)
+        val syncRealmController = SyncRealmController()
+        val repository = syncRealmController.getRepo()
 
-        val lineData: LineData = getData(14, 3f)
-        lineData.setValueTypeface(mTf)
-        lineData.setValueTextColor(R.color.dark_brown)
+        var depth = 0
+        lifecycleScope.launch {
+            val cardList = repository.getCards()
+            if (cardList.isNotEmpty()) {
+                depth = if (cardList.size >= 7) {
+                    7
+                } else {
+                    cardList.size
+                }
+            }
+            val cardSublist = cardList.subList(0, depth)
+            lineData = getData(cardSublist)
+            val chart: LineChart = binding.chart
 
-        setupChart(chart, lineData, R.color.transparent);
-        chart.legend.typeface = mTf
+            setUpLineChart(chart)
+            chart.data = lineData
+
+            // most common mood & number of happy-days
+            val topMood: Int
+            val moodColor: Int
+            val moodCounts: MutableMap<String, Int> = HashMap()
+            cardSublist.forEach { item ->
+                moodCounts[item.mood] = moodCounts.getOrDefault(item.mood, 0) + 1
+            }
+            val max = moodCounts.maxBy { it.value }
+            when (max.key) {
+                "happy" -> {
+                    topMood = R.drawable.ic_happy
+                    moodColor = R.color.ic_green
+                }
+                "neutral" -> {
+                    topMood = R.drawable.ic_neutral
+                    moodColor = R.color.ic_yellow
+                }
+                "unhappy" -> {
+                    topMood = R.drawable.ic_unhappy
+                    moodColor = R.color.ic_red
+                }
+                else -> {
+                    topMood = R.drawable.ic_neutral
+                    moodColor = R.color.ic_yellow
+                }
+            }
+
+            binding.chartsTopMood.setImageResource(topMood)
+            binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(moodColor, null))
+            binding.chartsNumHappyDays.text = moodCounts["happy"].toString()
+        }
 
         return binding.root
     }
 
-    private fun setupChart(chart: LineChart, data: LineData, color: Int) {
-        (data.getDataSetByIndex(0) as LineDataSet).circleHoleColor = R.color.brown
+    private fun setUpLineChart(chart: LineChart) {
+        with(chart) {
+            val colorDark = MooApp.res.getColor(R.color.dark_brown, null)
+            val colorLight = MooApp.res.getColor(R.color.light_brown, null)
+            val typeface = MooApp.res.getFont(R.font.arial_rounded_bold)
 
-        // no description text
-        chart.description.isEnabled = false
+            animateX(1200, Easing.EaseInSine)
+            description.isEnabled = false
 
-        //
-        // enable / disable grid background
-        chart.setDrawGridBackground(false)
+            val indexFormatter = IndexAxisValueFormatter()
+            indexFormatter.values = arrayOf("1", "2", "3", "4", "5", "6", "7")
 
-        // enable touch gestures
-        chart.setTouchEnabled(true)
+            xAxis.setDrawGridLines(false)
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.granularity = 1F
+            xAxis.textSize = 15f
+            xAxis.textColor = colorLight
+            xAxis.typeface = typeface
+            xAxis.valueFormatter = indexFormatter
 
-        // enable scaling and dragging
-        chart.isDragEnabled = true
-        chart.setScaleEnabled(true)
+            axisRight.isEnabled = false
+            extraRightOffset = 30f
 
-        // if disabled, scaling can be done on x- and y-axis separately
-        chart.setPinchZoom(false)
-        chart.setBackgroundColor(Color.WHITE)
+            axisLeft.granularity = 1F
+            axisLeft.textSize = 15f
+            axisLeft.textColor = colorLight
+            axisLeft.typeface = typeface
 
-        // set custom chart offsets (automatic offset calculation is hereby disabled)
-        chart.setViewPortOffsets(10f, 0f, 10f, 0f)
+            legend.orientation = Legend.LegendOrientation.VERTICAL
+            legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+            legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+            legend.textSize = 13F
+            legend.form = Legend.LegendForm.LINE
+            legend.typeface = typeface
+            legend.textColor = colorDark
 
-        chart.axisLeft.isEnabled = true
-//        chart.axisLeft.spaceTop = 40f
-//        chart.axisLeft.spaceBottom = 40f
-        chart.axisRight.isEnabled = false
-        chart.xAxis.isEnabled = true
-//        chart.xAxis.enableGridDashedLine(10f, 10f, 0f)
-
-//        chart.axisLeft.enableGridDashedLine(10f, 10f, 0f)
-        chart.axisLeft.axisMaximum = 3f
-        chart.axisLeft.axisMinimum = 1f
-
-        // add data
-        chart.data = data
-
-
-
-        // get the legend (only possible after setting data)
-        val l = chart.legend
-        l.isEnabled = false
-        l.textSize = 9f
-
-        // animate calls invalidate()...
-        chart.animateX(2500)
+            isDragEnabled = true
+            setScaleEnabled(true)
+            setPinchZoom(true)
+        }
     }
 
-    private fun getData(count: Int, range: Float): LineData {
+    private fun getData(list : List<Item>): LineData {
         val values: ArrayList<Entry> = ArrayList()
-        for (i in 0 until count) {
-            val value = (Math.random() * range).toFloat() + 3
+        list.forEachIndexed { i, item ->
+            val value: Float = when (item.mood) {
+                "happy" -> 3f
+                "neutral" -> 2f
+                "unhappy" -> 1f
+                else -> 2f
+            }
             values.add(Entry(i.toFloat(), value))
         }
 
-        // create a dataset and give it a type
-        val set1 = LineDataSet(values, "DataSet 1")
-        set1.fillAlpha = 110;
-        set1.lineWidth = 1.75f
-        set1.circleRadius = 5f
-        set1.circleHoleRadius = 2.5f
-        set1.colors = ColorTemplate.createColors(intArrayOf(R.color.brown))
-//        set1.setCircleColor(R.color.brown)
-//        set1.highLightColor = R.color.brown
-        set1.setDrawValues(false)
+        val dataset = LineDataSet(values, "Moods (3: Happy, 2: Neutral, 1: Unhappy)")
+        dataset.lineWidth = 3f
+        dataset.mode = LineDataSet.Mode.CUBIC_BEZIER
+        dataset.color = MooApp.res.getColor(R.color.brown, null)
+        dataset.valueTextColor = MooApp.res.getColor(R.color.dark_brown, null)
+        dataset.enableDashedLine(20F, 10F, 0F)
+        dataset.circleColors = mutableListOf(MooApp.res.getColor(R.color.brown, null))
+        dataset.setDrawValues(false)
 
-        // create a data object with the data sets
-        return LineData(set1)
+        return LineData(dataset)
     }
 
 }
