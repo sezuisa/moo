@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="General">
+        <SeekBarPreference
+            app:key="history_depth"
+            app:title="Card history depth"
+            app:summary="Select how many past cards are shown in card history."
+            app:defaultValue="4"
+            app:min="1"
+            android:max="7"
+            app:showSeekBarValue="true"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Account">
+        <EditTextPreference
+            app:key="display_name"
+            app:title="Change display name"
+            app:summary="The name displayed in the home view."
+            app:defaultValue="User"
+            app:persistent="true"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Other">
+        <Preference
+            app:key="feedback"
+            app:title="Send feedback"
+            app:summary="Report technical issues or suggest new features.">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://www.youtube.com/watch?v=dQw4w9WgXcQ"/>
+        </Preference>
+
+        <Preference
+            app:key="tip"
+            app:title="Buy me a coffee"
+            app:summary="Make a donation to the developers.">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://paypal.me/sarahluisahaegele"/>
+        </Preference>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
