@@ -122,7 +122,8 @@ class RealmSyncRepository(
             this.creationTimeStamp = now
         }
         Log.d("Tag", "Add card to list ")
-        val items: RealmResults<Item>  = realm.query<Item>().find()
+        val items: RealmResults<Item>  = realm.query<Item>("owner_id == $0", gotItem.owner_id).find()
+        Log.d("Tag", "Foun ${items.count()} Items")
         var matchedItem : Item? = null
         items.forEach {
             if(gotItem.sameDay(it.creationTimeStamp)){
@@ -135,6 +136,9 @@ class RealmSyncRepository(
                 }
                 if ( gotItem.note == ""){
                     gotItem.note = it.note
+                }
+                if ( gotItem.mood == ""){
+                    gotItem.mood = it.mood
                 }
 
             }
