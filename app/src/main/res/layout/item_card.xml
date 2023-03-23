@@ -51,6 +51,7 @@
                 android:background="@drawable/rounded_corners_top"
                 >
                 <ImageView
+                    android:id="@+id/item_mood_happy"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_happy"
@@ -58,6 +59,7 @@
                     android:layout_margin="10dp"
                     />
                 <ImageView
+                    android:id="@+id/item_mood_neutral"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_neutral"
@@ -65,6 +67,7 @@
                     android:layout_margin="10dp"
                     />
                 <ImageView
+                    android:id="@+id/item_mood_unhappy"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_unhappy"

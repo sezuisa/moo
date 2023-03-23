@@ -20,4 +20,6 @@
     <color name="green">#9CCA9E</color>
     <color name="yellow">#FFCC81</color>
     <color name="red">#FF8686</color>
+    <color name="grey">#AEAEAE</color>
+
 </resources>
