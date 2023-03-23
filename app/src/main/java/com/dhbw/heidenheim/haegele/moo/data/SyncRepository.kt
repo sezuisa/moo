@@ -112,6 +112,10 @@ class RealmSyncRepository(
             .sort(Pair("_id", Sort.ASCENDING))
             .asFlow()
     }
+
+    fun getCards(): RealmResults<Item> {
+        return realm.query<Item>().find()
+    }
     override suspend fun addCard(note :String,highlight:String, mood:String) {
         val gotItem = Item().apply {
             owner_id = currentUser.id
