@@ -123,12 +123,13 @@ class RealmSyncRepository(
         }
         Log.d("Tag", "Add card to list ")
         val items: RealmResults<Item>  = realm.query<Item>("owner_id == $0", gotItem.owner_id).find()
-        Log.d("Tag", "Foun ${items.count()} Items")
+        Log.d("Tag", "Found ${items.count()} Items")
         var matchedItem : Item? = null
         items.forEach {
             if(gotItem.sameDay(it.creationTimeStamp)){
                 Log.d("Tag", "Found same item !")
                 matchedItem = it
+
                 //check for changes for the new item
                 // if no changes override that with the initial card of the current date
                 if (gotItem.highlight == ""){
@@ -148,6 +149,7 @@ class RealmSyncRepository(
             Log.d("Tag", "Remove old item")
             deleteItem(matchedItem!!)
         }
+        Log.d("Tag", "Write to Realm")
         realm.write {
             copyToRealm(gotItem)
         }

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val credentials =
-                Credentials.emailPassword("test@1.de", "Test1234$")
+                Credentials.emailPassword("test@2.de", "Test1234$")
             val user = app.login(credentials)
             Log.d("moo-INFO", "User is logged in: " + user.loggedIn)
         }
