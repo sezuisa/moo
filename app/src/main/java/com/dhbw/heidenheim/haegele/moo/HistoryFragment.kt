@@ -13,7 +13,6 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
-
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentHistoryBinding
 import com.yuyakaido.android.cardstackview.*

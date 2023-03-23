@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityLoginBinding
 import com.mongodb.app.data.AuthRepository
 import com.mongodb.app.data.RealmAuthRepository
@@ -22,57 +23,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(binding.loginNavHost.id) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        binding.registerButton.setOnClickListener {
-            val email = binding.usernameEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-
-            //register
-
-            CoroutineScope(Dispatchers.IO).launch {
-
-                if (createAccount(email, password)) {
-                    runOnUiThread {
-                        Toast.makeText(this@LoginActivity, R.string.hello, Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                } else
-                    runOnUiThread {
-                        Toast.makeText(this@LoginActivity, R.string.app_name, Toast.LENGTH_SHORT)
-                            .show()
-                    }
-            }
-            finish()
-        }
-
-
-        binding.loginButton.setOnClickListener{
-            val email = binding.usernameEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-
-            // login in
-
-            CoroutineScope(Dispatchers.IO).launch {
-
-                if(login(email, password)){
-                    runOnUiThread{
-                        Toast.makeText(this@LoginActivity, R.string.hello, Toast.LENGTH_SHORT).show()
-                    }
-                }else{
-
-                    runOnUiThread {
-                        Toast.makeText(this@LoginActivity, R.string.app_name, Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-            }
-
-            finish()
-        }
-
-        binding.exitButton.setOnClickListener {
-            finish()
-        }
     }
 }
 private val authRepository: AuthRepository = RealmAuthRepository

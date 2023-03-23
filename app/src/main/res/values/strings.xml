@@ -24,4 +24,6 @@
     <string name="preferences_header">Preferences</string>
     <string name="history_subtitle">Your cards from recent days.</string>
     <string name="statistics_subtitle">A summary of your moods.</string>
+    <string name="login_toast">Login successful!</string>
+    <string name="register_toast">Account created successfully!</string>
 </resources>

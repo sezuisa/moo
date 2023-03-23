@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.dhbw.heidenheim.haegele.moo.databinding.FragmentMainBinding
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentWrapperContentBinding
 
 class WrapperContentFragment : Fragment() {

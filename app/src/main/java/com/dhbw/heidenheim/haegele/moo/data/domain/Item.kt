@@ -2,7 +2,6 @@ package com.dhbw.heidenheim.haegele.moo.data.domain
 import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
-import java.time.LocalDateTime
 
 class Item() : RealmObject {
     @PrimaryKey
