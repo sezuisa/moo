@@ -1,17 +1,17 @@
 package com.dhbw.heidenheim.haegele.moo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.dhbw.heidenheim.haegele.moo.data.card.MoodCard
+import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.ItemCardBinding
-import java.time.format.DateTimeFormatter
 
 class CardStackAdapter(
-    private var cards: List<MoodCard> = emptyList()
+    private var cards: List<Item> = emptyList()
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,13 +21,29 @@ class CardStackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val card = cards[position]
-        val formatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy")
-        val date = card.getDateTime().format(formatter)
-        holder.date.text = date
-        holder.highlight.text = card.getHighlight()
-        holder.note.text = card.getNote()
+//        val formatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy")
+        val dateStamp = card.creationTimeStamp.split("T")[0]
+        holder.creationTimeStamp.text = dateStamp
+        holder.highlight.text = card.highlight
+        holder.note.text = card.note
+
+        when (card.mood) {
+            "happy" -> {
+                holder.moodNeutral.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+                holder.moodUnhappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+            }
+            "neutral" -> {
+                holder.moodHappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+                holder.moodUnhappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+            }
+            "unhappy" -> {
+                holder.moodHappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+                holder.moodNeutral.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+            }
+        }
+
         holder.itemView.setOnClickListener { v ->
-            Toast.makeText(v.context, date, Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context, dateStamp, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -35,18 +51,22 @@ class CardStackAdapter(
         return cards.size
     }
 
-    fun setCards(spots: List<MoodCard>) {
+    fun setCards(spots: List<Item>) {
         this.cards = spots
     }
 
-    fun getCards(): List<MoodCard> {
+    fun getCards(): List<Item> {
         return cards
     }
 
     inner class ViewHolder(binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        val date: TextView = binding.itemDate
+
+        val creationTimeStamp: TextView = binding.itemDate
         var highlight: TextView = binding.itemHighlight
         var note: TextView = binding.itemFreetext
+        var moodHappy: ImageView = binding.itemMoodHappy
+        var moodNeutral: ImageView = binding.itemMoodNeutral
+        var moodUnhappy: ImageView = binding.itemMoodUnhappy
     }
 
 }
