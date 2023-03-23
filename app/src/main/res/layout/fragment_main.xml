@@ -86,7 +86,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_happy"
-                app:tint="#9CCA9E"
+                app:tint="@color/green"
                 android:layout_margin="10dp"
                 />
             <ImageView
@@ -94,7 +94,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_neutral"
-                app:tint="#FFCC81"
+                app:tint="@color/yellow"
                 android:layout_margin="10dp"
                 />
             <ImageView
@@ -102,7 +102,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/ic_unhappy"
-                app:tint="#FF8686"
+                app:tint="@color/red"
                 android:layout_margin="10dp"
                 />
         </LinearLayout>
