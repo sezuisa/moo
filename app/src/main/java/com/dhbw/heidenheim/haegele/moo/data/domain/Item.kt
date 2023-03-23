@@ -1,8 +1,4 @@
 package com.dhbw.heidenheim.haegele.moo.data.domain
-
-import android.util.Log
-import com.dhbw.heidenheim.haegele.moo.data.card.Happy
-import com.dhbw.heidenheim.haegele.moo.data.card.MoodCard
 import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey

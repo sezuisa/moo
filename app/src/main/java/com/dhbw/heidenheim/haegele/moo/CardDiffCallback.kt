@@ -1,7 +1,6 @@
 package com.dhbw.heidenheim.haegele.moo
 
 import androidx.recyclerview.widget.DiffUtil
-import com.dhbw.heidenheim.haegele.moo.data.card.MoodCard
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import java.time.format.DateTimeFormatter
 
