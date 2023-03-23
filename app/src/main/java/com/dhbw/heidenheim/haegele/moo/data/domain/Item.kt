@@ -11,11 +11,6 @@ import java.time.LocalDateTime
 class Item() : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId.create()
-//    var card = MoodCard(
-//        Happy(),
-//        "",
-//        ""
-//    )
     var creationTimeStamp: String = ""
     var mood : String = ""
     var highlight : String = ""

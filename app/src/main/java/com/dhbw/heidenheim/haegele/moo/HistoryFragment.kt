@@ -13,8 +13,10 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.dhbw.heidenheim.haegele.moo.data.card.*
+import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentHistoryBinding
 import com.yuyakaido.android.cardstackview.*
+import java.time.LocalDateTime
 
 class HistoryFragment : Fragment(), CardStackListener {
 
@@ -128,7 +130,7 @@ class HistoryFragment : Fragment(), CardStackListener {
 
     private fun addFirst(size: Int) {
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             for (i in 0 until size) {
                 add(manager.topPosition, createCard())
@@ -142,7 +144,7 @@ class HistoryFragment : Fragment(), CardStackListener {
 
     private fun addLast(size: Int) {
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             addAll(List(size) { createCard() })
         }
@@ -158,7 +160,7 @@ class HistoryFragment : Fragment(), CardStackListener {
         }
 
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             for (i in 0 until size) {
                 removeAt(manager.topPosition)
@@ -176,7 +178,7 @@ class HistoryFragment : Fragment(), CardStackListener {
         }
 
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             for (i in 0 until size) {
                 removeAt(this.size - 1)
@@ -190,7 +192,7 @@ class HistoryFragment : Fragment(), CardStackListener {
 
     private fun replace() {
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             removeAt(manager.topPosition)
             add(manager.topPosition, createCard())
@@ -201,7 +203,7 @@ class HistoryFragment : Fragment(), CardStackListener {
 
     private fun swap() {
         val old = adapter.getCards()
-        val new = mutableListOf<MoodCard>().apply {
+        val new = mutableListOf<Item>().apply {
             addAll(old)
             val first = removeAt(manager.topPosition)
             val last = removeAt(this.size - 1)
@@ -214,27 +216,30 @@ class HistoryFragment : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
-    private fun createCard(): MoodCard {
-        return MoodCard(
-            mood = Happy(),
-            highlight = "Workout",
-            note = "Today's workout was really great. I do feel very tired though!"
-        )
+    private fun createCard(): Item {
+        val item = Item()
+        item.mood = "happy"
+        item.note = "Jimmy Changa, bitches!"
+        val now = LocalDateTime.now().toString()
+        item.creationTimeStamp = now
+        item.highlight = "Dinner"
+        return item
     }
 
-    private fun createCards(): List<MoodCard> {
-        val cards = ArrayList<MoodCard>()
+    private fun createCards(): List<Item> {
+        val cards = ArrayList<Item>()
         val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val depth = sp.getInt("history_depth", 4)
 
         for (i in 1..depth) {
-            cards.add(MoodCard(mood = Happy(), highlight = "Dinner $i", note = "Jimmy Changa, bitches!"))
+            val item = Item()
+            item.mood = "happy"
+            item.note = "Jimmy Changa, bitches!"
+            val now = LocalDateTime.now().toString()
+            item.creationTimeStamp = now
+            item.highlight = "Dinner $i"
+            cards.add(item)
         }
-//        cards.add(MoodCard(mood = Happy(), highlight = "Breakfast", note = "Breakfast is simply great. Seriously, it makes or breaks a day."))
-//        cards.add(MoodCard(mood = Neutral(), highlight = "Android", note = "Got some stuff done on the Android front. But man, I'm tired..."))
-//        cards.add(MoodCard(mood = Sad(), highlight = "Dunno", note = "Make it stooooooop..."))
-//        cards.add(MoodCard(mood = Neutral(), highlight = "Lunch", note = "Food makes the day bearable."))
-//        cards.add(MoodCard(mood = Happy(), highlight = "Dinner", note = "Jimmy Changa, bitches!"))
         return cards
     }
 }
