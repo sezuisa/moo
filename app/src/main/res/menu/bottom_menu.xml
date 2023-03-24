@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/historyFragment"
-        android:icon="@drawable/ic_history"
+        android:icon="@drawable/ic_animated_history_selector"
         android:title="History" />
 
     <item
         android:id="@+id/mainFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_animated_home_selector"
         android:title="Home" />
 
     <item
         android:id="@+id/chartsFragment"
-        android:icon="@drawable/ic_chart"
+        android:icon="@drawable/ic_animated_chart_selector"
         android:title="Statistics" />
 </menu>

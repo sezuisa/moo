@@ -2,6 +2,7 @@ package com.dhbw.heidenheim.haegele.moo.data.domain
 import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
+import java.time.LocalDate
 
 class Item() : RealmObject {
     @PrimaryKey
@@ -39,8 +40,8 @@ class Item() : RealmObject {
     }
     fun sameDay(otherTimeStamp: String): Boolean {
         //get the date of the timestamps
-        val dateStamp = this.creationTimeStamp.split("T")
-        val otherDateStamp = otherTimeStamp.split("T")
-        return dateStamp[0] == otherDateStamp[0]
+        val dateStamp = LocalDate.parse(this.creationTimeStamp)
+        val otherDateStamp = LocalDate.parse(otherTimeStamp)
+        return dateStamp.isEqual(otherDateStamp)
     }
 }

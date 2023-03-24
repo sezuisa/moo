@@ -9,6 +9,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.ItemCardBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CardStackAdapter(
     private var cards: List<Item> = emptyList()
@@ -21,8 +23,8 @@ class CardStackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val card = cards[position]
-//        val formatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy")
-        val dateStamp = card.creationTimeStamp.split("T")[0]
+        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+        val dateStamp = LocalDate.parse(card.creationTimeStamp).format(formatter)
         holder.creationTimeStamp.text = dateStamp
         holder.highlight.text = card.highlight
         holder.note.text = card.note

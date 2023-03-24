@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_wrapper_content" >
         <action
             android:id="@+id/main_to_preferences"
-            app:destination="@id/wrapperPreferencesFragment" />
+            app:destination="@id/wrapperPreferencesFragment"
+            app:enterAnim="@anim/nav_enter_slideup"
+            app:exitAnim="@anim/nav_exit_slidedown" />
     </fragment>
     <fragment
         android:id="@+id/wrapperPreferencesFragment"
@@ -21,6 +23,8 @@
         tools:layout="@layout/fragment_wrapper_preferences" >
         <action
             android:id="@+id/preferences_to_main"
-            app:destination="@id/wrapperContentFragment" />
+            app:destination="@id/wrapperContentFragment"
+            app:enterAnim="@anim/nav_enter_slideup"
+            app:exitAnim="@anim/nav_exit_slidedown" />
     </fragment>
 </navigation>

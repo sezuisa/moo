@@ -27,6 +27,9 @@ class HistoryFragment : Fragment(), CardStackListener {
     private val manager by lazy { CardStackLayoutManager(fragmentContext, this) }
     private val adapter by lazy { CardStackAdapter(createCards()) }
 
+    private val syncRealmController = SyncRealmController()
+    private val repository = syncRealmController.getRepo()
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -118,10 +121,8 @@ class HistoryFragment : Fragment(), CardStackListener {
         result.dispatchUpdatesTo(adapter)
     }
 
-    val syncRealmController = SyncRealmController()
-    val repository = syncRealmController.getRepo()
     private fun createCards(): List<Item> {
-        var cards: ArrayList<Item>
+        val cards: ArrayList<Item>
         val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val depth = sp.getInt("history_depth", 4)
 
