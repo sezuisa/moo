@@ -53,7 +53,7 @@ class LoginFragment : Fragment() {
                 } else
                     if (!isAdded) { return@launch }
                     activity?.runOnUiThread {
-                        Toast.makeText(view.context, R.string.register_toast, Toast.LENGTH_SHORT)
+                        Toast.makeText(view.context, R.string.register_error_toast, Toast.LENGTH_SHORT)
                             .show()
                     }
             }
@@ -76,7 +76,7 @@ class LoginFragment : Fragment() {
                 }else{
                     if (!isAdded) { return@launch }
                     activity?.runOnUiThread  {
-                        Toast.makeText(view.context, R.string.login_toast, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(view.context, R.string.login_error_toast, Toast.LENGTH_SHORT).show()
                     }
                 }
 

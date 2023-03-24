@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
+import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import kotlinx.coroutines.GlobalScope
@@ -25,6 +26,7 @@ class MooWidget : AppWidgetProvider() {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
+
     }
 
     override fun onEnabled(context: Context) {
@@ -59,6 +61,7 @@ class MooWidget : AppWidgetProvider() {
         }
         if (context != null && action == "addNeutralCard") {
             Log.d("Tag", "Widget Clicked")
+
 
             GlobalScope.launch {
                 repository.addCard("","","neutral")

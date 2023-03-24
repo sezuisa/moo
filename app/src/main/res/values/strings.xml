@@ -10,7 +10,7 @@
     <string name="highlight_header">Today\'s highlight</string>
     <string name="highlight_text">Fancy dinner</string>
     <string name="statistics">Statistics</string>
-    <string name="duration">Week</string>
+    <string name="duration">Past %1$d days</string>
     <string name="statistics_highlights">Highlights</string>
     <string name="statistics_mood">Most common mood</string>
     <string name="statistics_happydays">Happy-Days</string>
@@ -26,4 +26,10 @@
     <string name="statistics_subtitle">A summary of your moods.</string>
     <string name="login_toast">Login successful!</string>
     <string name="register_toast">Account created successfully!</string>
+    <string name="register_error_toast">Account could not be created!</string>
+    <string name="login_error_toast">Login failed!</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
 </resources>

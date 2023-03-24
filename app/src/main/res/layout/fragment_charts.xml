@@ -74,6 +74,7 @@
             android:background="@drawable/rounded_corners"
             >
             <TextView
+                android:id="@+id/charts_depth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/duration"

@@ -45,53 +45,50 @@ class ChartsFragment : Fragment() {
         val syncRealmController = SyncRealmController()
         val repository = syncRealmController.getRepo()
 
-        var depth = 0
         lifecycleScope.launch {
-            val cardList = repository.getCards()
-            if (cardList.isNotEmpty()) {
-                depth = if (cardList.size >= 7) {
-                    7
-                } else {
-                    cardList.size
-                }
-            }
-            val cardSublist = cardList.subList(0, depth)
-            lineData = getData(cardSublist)
-            val chart: LineChart = binding.chart
+            var cardList = repository.getCardList(7)
+            if (cardList != null) {
+                cardList.reverse()
 
-            setUpLineChart(chart)
-            chart.data = lineData
+                lineData = getData(cardList)
+                val chart: LineChart = binding.chart
 
-            // most common mood & number of happy-days
-            val topMood: Int
-            val moodColor: Int
-            val moodCounts: MutableMap<String, Int> = HashMap()
-            cardSublist.forEach { item ->
-                moodCounts[item.mood] = moodCounts.getOrDefault(item.mood, 0) + 1
-            }
-            val max = moodCounts.maxBy { it.value }
-            when (max.key) {
-                "happy" -> {
-                    topMood = R.drawable.ic_happy
-                    moodColor = R.color.ic_green
-                }
-                "neutral" -> {
-                    topMood = R.drawable.ic_neutral
-                    moodColor = R.color.ic_yellow
-                }
-                "unhappy" -> {
-                    topMood = R.drawable.ic_unhappy
-                    moodColor = R.color.ic_red
-                }
-                else -> {
-                    topMood = R.drawable.ic_neutral
-                    moodColor = R.color.ic_yellow
-                }
-            }
+                setUpLineChart(chart)
+                chart.data = lineData
 
-            binding.chartsTopMood.setImageResource(topMood)
-            binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(moodColor, null))
-            binding.chartsNumHappyDays.text = moodCounts["happy"].toString()
+                // most common mood & number of happy-days
+                val topMood: Int
+                val moodColor: Int
+                val moodCounts: MutableMap<String, Int> = HashMap()
+                cardList.forEach { item ->
+                    moodCounts[item.mood] = moodCounts.getOrDefault(item.mood, 0) + 1
+                }
+                val max = moodCounts.maxBy { it.value }
+                when (max.key) {
+                    "happy" -> {
+                        topMood = R.drawable.ic_happy
+                        moodColor = R.color.ic_green
+                    }
+                    "neutral" -> {
+                        topMood = R.drawable.ic_neutral
+                        moodColor = R.color.ic_yellow
+                    }
+                    "unhappy" -> {
+                        topMood = R.drawable.ic_unhappy
+                        moodColor = R.color.ic_red
+                    }
+                    else -> {
+                        topMood = R.drawable.ic_neutral
+                        moodColor = R.color.ic_yellow
+                    }
+                }
+
+                binding.chartsDepth.text = getString(R.string.duration, cardList.size)
+                binding.chartsTopMood.setImageResource(topMood)
+                binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(moodColor, null))
+                binding.chartsNumHappyDays.text = moodCounts["happy"].toString()
+
+            }
         }
 
         return binding.root

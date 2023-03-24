@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/arial_rounded_bold"
             android:layout_marginHorizontal="30dp"
-            android:hint="Benutzername" />
+            android:hint="@string/username_hint" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/arial_rounded_bold"
             android:layout_marginHorizontal="30dp"
-            android:hint="Passwort"
+            android:hint="@string/password_hint"
             android:inputType="textPassword" />
 
         <Button
@@ -37,12 +37,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/arial_rounded_bold"
-            android:text="Anmelden" />
+            android:text="@string/login_button" />
         <Button
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/arial_rounded_bold"
-            android:text="Registrieren" />
+            android:text="@string/register_button" />
 
 </LinearLayout>

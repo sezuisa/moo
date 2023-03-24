@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlin.time.Duration.Companion.seconds
 
@@ -110,10 +111,10 @@ class RealmSyncRepository(
 
     override fun getCardList(depth: Int): ArrayList<Item>? {
         val items = realm.query<Item>("owner_id == $0", currentUser.id).find().toList()
-        val itemOfTheDay = items.find { it.sameDay(LocalDateTime.now().toString()) }
+        val itemOfTheDay = items.find { it.sameDay(LocalDate.now().toString()) }
         val dateComparator = Comparator<Item> { item1, item2 ->
-            val dateParser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
-            dateParser.parse(item1.creationTimeStamp).compareTo(dateParser.parse(item2.creationTimeStamp))
+//            val dateParser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+            LocalDate.parse(item1.creationTimeStamp).compareTo(LocalDate.parse(item2.creationTimeStamp))
         }
         val slicedItems = items.sortedWith(dateComparator)
             .reversed()
@@ -123,16 +124,13 @@ class RealmSyncRepository(
         return ArrayList(slicedItems)
     }
 
-    fun getCards(): RealmResults<Item> {
-        return realm.query<Item>().find()
-    }
     override suspend fun addCard(note :String,highlight:String, mood:String) {
         val gotItem = Item().apply {
             owner_id = currentUser.id
             this.note = note
             this.highlight = highlight
             this.mood = mood
-            var now = LocalDateTime.now().toString()
+            val now = LocalDate.now().toString()
             this.creationTimeStamp = now
         }
         Log.d("Tag", "Add card to list ")
