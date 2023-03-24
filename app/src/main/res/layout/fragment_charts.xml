@@ -106,7 +106,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:textSize="10pt"
-                android:textColor="#C48C66"
+                android:textColor="@color/brown"
                 />
 
             <TableLayout
@@ -123,7 +123,7 @@
                         android:fontFamily="@font/arial_rounded_bold"
                         android:padding="5dp"
                         android:textSize="10pt"
-                        android:textColor="#C48C66"
+                        android:textColor="@color/brown"
                         android:layout_gravity="start"
                         />
                     <ImageView
@@ -131,7 +131,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_neutral"
-                        app:tint="#FFCC81"
+                        app:tint="@color/ic_yellow"
                         />
                 </TableRow>
 
@@ -146,7 +146,7 @@
                         android:padding="5dp"
                         android:gravity="start"
                         android:textSize="10pt"
-                        android:textColor="#C48C66"
+                        android:textColor="@color/brown"
                         />
                     <TextView
                         android:id="@+id/charts_num_happy_days"
@@ -157,7 +157,7 @@
                         android:padding="5dp"
                         android:gravity="center"
                         android:textSize="10pt"
-                        android:textColor="#C48C66"
+                        android:textColor="@color/brown"
                         />
                 </TableRow>
 

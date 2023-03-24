@@ -1,4 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <attr name="primaryColor" format="reference|color"/>
+    <attr name="primaryVariantColor" format="reference|color"/>
+    <attr name="secondaryColor" format="reference|color"/>
+    <attr name="secondaryVariantColor" format="reference|color"/>
+
     <!-- Base application theme. -->
     <style name="Theme.Moo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -13,6 +19,60 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="brownTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">?attr/primaryColor</item>
+        <item name="colorPrimaryVariant">?attr/primaryVariantColor</item>
+        <item name="colorSecondary">?attr/secondaryColor</item>
+        <item name="colorSecondaryVariant">?attr/secondaryVariantColor</item>
+
+        <item name="primaryColor">@color/brown</item>
+        <item name="primaryVariantColor">@color/dark_brown</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+
+        <item name="secondaryColor">@color/light_brown</item>
+        <item name="secondaryVariantColor">@color/light_brown</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/primaryColor</item>
+    </style>
+
+    <style name="bwTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">?attr/primaryColor</item>
+        <item name="colorPrimaryVariant">?attr/primaryVariantColor</item>
+        <item name="colorSecondary">?attr/secondaryColor</item>
+        <item name="colorSecondaryVariant">?attr/secondaryVariantColor</item>
+
+        <item name="primaryColor">@color/black</item>
+        <item name="primaryVariantColor">@color/dark_grey</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="secondaryColor">@color/white</item>
+        <item name="secondaryVariantColor">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/primaryColor</item>
+    </style>
+
+    <style name="milkaTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">?attr/primaryColor</item>
+        <item name="colorPrimaryVariant">?attr/primaryVariantColor</item>
+        <item name="colorSecondary">?attr/secondaryColor</item>
+        <item name="colorSecondaryVariant">?attr/secondaryVariantColor</item>
+
+        <item name="primaryColor">@color/milka_main</item>
+        <item name="primaryVariantColor">@color/milka_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="secondaryColor">@color/milka_secondary</item>
+        <item name="secondaryVariantColor">@color/milka_secondary</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/primaryColor</item>
+    </style>
+
+
 
     <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
