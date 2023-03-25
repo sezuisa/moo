@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    android:backgroundTint="@color/brown"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -45,11 +44,10 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:icon="@drawable/ic_settings"
+                app:iconTint="?attr/colorPrimary"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
                 app:iconSize="45dp"
-                app:iconTint="@color/brown"
-                app:backgroundTint="@color/light_brown"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"

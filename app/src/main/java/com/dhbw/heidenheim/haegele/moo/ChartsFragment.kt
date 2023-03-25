@@ -1,9 +1,14 @@
 package com.dhbw.heidenheim.haegele.moo
 
+import android.content.res.Resources
+import android.content.res.Resources.Theme
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
@@ -17,6 +22,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.launch
 
 
@@ -96,8 +102,15 @@ class ChartsFragment : Fragment() {
 
     private fun setUpLineChart(chart: LineChart) {
         with(chart) {
-            val colorDark = MooApp.res.getColor(R.color.dark_brown, null)
-            val colorLight = MooApp.res.getColor(R.color.light_brown, null)
+//            val typedVal = TypedValue()
+//            val theme = context.theme
+//            theme.resolveAttribute(R.attr.secondaryColor, typedVal, true)
+//            theme.resolveAttribute(R.attr.primaryVariantColor, typedVal, true)
+//            @ColorInt val secondaryColor = typedVal.data
+//            @ColorInt val primaryVariantColor = typedVal.data
+
+            val colorDark = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, Color.BLACK)
+            val colorLight = MaterialColors.getColor(context, com.google.android.material.R.attr.colorSecondary, Color.GRAY)
             val typeface = MooApp.res.getFont(R.font.arial_rounded_bold)
 
             animateX(1200, Easing.EaseInSine)
@@ -148,13 +161,16 @@ class ChartsFragment : Fragment() {
             values.add(Entry(i.toFloat(), value))
         }
 
+        val primaryColor = MaterialColors.getColor(requireContext(), com.google.android.material.R.attr.colorPrimary, Color.GRAY)
+        val darkColor = MaterialColors.getColor(requireContext(), com.google.android.material.R.attr.colorPrimaryVariant, Color.BLACK)
+
         val dataset = LineDataSet(values, "Moods (3: Happy, 2: Neutral, 1: Unhappy)")
         dataset.lineWidth = 3f
         dataset.mode = LineDataSet.Mode.CUBIC_BEZIER
-        dataset.color = MooApp.res.getColor(R.color.brown, null)
-        dataset.valueTextColor = MooApp.res.getColor(R.color.dark_brown, null)
+        dataset.color = primaryColor
+        dataset.valueTextColor = darkColor
         dataset.enableDashedLine(20F, 10F, 0F)
-        dataset.circleColors = mutableListOf(MooApp.res.getColor(R.color.brown, null))
+        dataset.circleColors = mutableListOf(primaryColor)
         dataset.setDrawValues(false)
 
         return LineData(dataset)

@@ -5,11 +5,14 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
+import android.widget.ImageView
 import android.widget.RemoteViews
 import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
+import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

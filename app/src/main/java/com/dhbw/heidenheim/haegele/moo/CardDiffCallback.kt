@@ -17,7 +17,7 @@ class CardDiffCallback(
     }
 
     override fun areItemsTheSame(oldPosition: Int, newPosition: Int): Boolean {
-        return old[oldPosition].sameDay(new[newPosition].creationTimeStamp)
+        return old[oldPosition] == new[newPosition]
     }
 
     override fun areContentsTheSame(oldPosition: Int, newPosition: Int): Boolean {

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@string/preferences_header"
             android:textSize="18pt"
-            android:textColor="@color/brown"
+            android:textColor="?attr/colorPrimary"
             android:fontFamily="@font/friskily"
             android:layout_marginTop="10dp"
             android:layout_marginStart="30dp"

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/statistics_subtitle"
         android:textSize="10pt"
-        android:textColor="@color/light_brown"
+        android:textColor="?attr/colorSecondary"
         android:fontFamily="@font/arial_rounded_bold"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintHorizontal_bias="0"
@@ -82,7 +82,7 @@
                 android:padding="10dp"
                 android:gravity="center"
                 android:textSize="10pt"
-                android:textColor="#C48C66"
+                android:textColor="?attr/colorPrimary"
                 />
 
             <com.github.mikephil.charting.charts.LineChart
@@ -106,7 +106,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:textSize="10pt"
-                android:textColor="@color/brown"
+                android:textColor="?attr/colorPrimary"
                 />
 
             <TableLayout
@@ -123,7 +123,7 @@
                         android:fontFamily="@font/arial_rounded_bold"
                         android:padding="5dp"
                         android:textSize="10pt"
-                        android:textColor="@color/brown"
+                        android:textColor="?attr/colorPrimary"
                         android:layout_gravity="start"
                         />
                     <ImageView
@@ -146,7 +146,7 @@
                         android:padding="5dp"
                         android:gravity="start"
                         android:textSize="10pt"
-                        android:textColor="@color/brown"
+                        android:textColor="?attr/colorPrimary"
                         />
                     <TextView
                         android:id="@+id/charts_num_happy_days"
@@ -157,7 +157,7 @@
                         android:padding="5dp"
                         android:gravity="center"
                         android:textSize="10pt"
-                        android:textColor="@color/brown"
+                        android:textColor="?attr/colorPrimary"
                         />
                 </TableRow>
 
