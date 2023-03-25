@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentLoginBinding
 import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.CoroutineScope
@@ -49,15 +48,11 @@ class LoginFragment : Fragment() {
                     activity?.runOnUiThread {
                         Toast.makeText(view.context, R.string.register_toast, Toast.LENGTH_SHORT)
                             .show()
-                    }
-                    it.findNavController().navigate(R.id.login_to_app)
-                    (activity as LoginActivity).finish()
-                } else
-                    if (!isAdded) { return@launch }
-                    activity?.runOnUiThread {
-                        Toast.makeText(view.context, R.string.register_error_toast, Toast.LENGTH_SHORT)
+
+                        Toast.makeText(view.context, R.string.requestToLogin_toast, Toast.LENGTH_SHORT)
                             .show()
                     }
+                }
             }
         }
 

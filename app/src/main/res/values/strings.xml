@@ -34,4 +34,8 @@
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="widget_mood_title">Today\'s mood</string>
+    <string name="requestToLogin_toast">Please log in with your credentials!</string>
+
+
+
 </resources>
