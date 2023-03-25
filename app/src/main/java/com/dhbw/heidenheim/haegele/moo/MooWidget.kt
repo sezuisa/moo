@@ -5,21 +5,13 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.util.Log
-import android.widget.ImageView
 import android.widget.RemoteViews
 import androidx.core.content.edit
-import androidx.lifecycle.lifecycleScope
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
-import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-/**
- * Implementation of App Widget functionality.
- */
 class MooWidget : AppWidgetProvider() {
 
     val green = MooApp.res.getColor(R.color.ic_green, null)
@@ -35,8 +27,6 @@ class MooWidget : AppWidgetProvider() {
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
-
-
     }
 
     override fun onEnabled(context: Context) {
@@ -98,8 +88,6 @@ class MooWidget : AppWidgetProvider() {
             }
         }
 
-
-
     }
     private fun updateAppWidget(
         context: Context,
@@ -109,13 +97,11 @@ class MooWidget : AppWidgetProvider() {
         // Create an Intent to launch ExampleActivity
 
         // Get the layout for the widget and attach an on-click listener
-        // to the button.
         val views = RemoteViews(context.packageName, R.layout.moo_widget)
         views.setOnClickPendingIntent(R.id.wbtnHappy, pendingIntent(context, "addHappyCard"))
         views.setOnClickPendingIntent(R.id.wbtnNeutral, pendingIntent(context, "addNeutralCard"))
         views.setOnClickPendingIntent(R.id.wbtnSad, pendingIntent(context, "addUnhappyCard"))
-        // Tell the AppWidgetManager to perform an update on the current
-        // widget.
+        // Tell the AppWidgetManager to perform an update on the current widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
 
     }

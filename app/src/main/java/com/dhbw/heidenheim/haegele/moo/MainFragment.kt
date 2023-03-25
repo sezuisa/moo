@@ -22,7 +22,6 @@ import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentMainBinding
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
@@ -32,16 +31,14 @@ class MainFragment : Fragment() {
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == "prefUpdated") {
-                // Aktualisiere die Ansicht mit den neuen Daten aus den SharedPreferences
+                // update the shared preferences
                 loadSettings()
             }
         }
     }
 
-
-
     // This property is only valid between onCreateView and
-    // onDestroyView.
+    // onDestroyView
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -251,9 +248,13 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Registriere den BroadcastReceiver
+        // register BroadcastReceiver
         requireActivity().registerReceiver(broadcastReceiver, IntentFilter("prefUpdated"))
-        // Aktualisiere die SharedPreferences
+        // update SharedPreferences
         loadSettings()
+    }
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(broadcastReceiver)
     }
 }
