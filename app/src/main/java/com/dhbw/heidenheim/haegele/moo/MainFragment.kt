@@ -232,8 +232,8 @@ class MainFragment : Fragment() {
             happyColor = cardSettings.getInt("happy_color", MooApp.res.getColor(R.color.grey, null))
             neutralColor = cardSettings.getInt("neutral_color", MooApp.res.getColor(R.color.grey, null))
             unhappyColor = cardSettings.getInt("unhappy_color", MooApp.res.getColor(R.color.grey, null))
-            highlight = cardSettings.getString("note", "").toString()
-            note = cardSettings.getString("highlight", "").toString()
+            highlight = cardSettings.getString("highlight", "").toString()
+            note = cardSettings.getString("note", "").toString()
         }
 
         binding.icHappy.drawable.setTint(happyColor)
