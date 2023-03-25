@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.util.Log
 import android.widget.ImageView
@@ -20,6 +21,11 @@ import kotlinx.coroutines.launch
  * Implementation of App Widget functionality.
  */
 class MooWidget : AppWidgetProvider() {
+
+    val green = MooApp.res.getColor(R.color.ic_green, null)
+    val yellow = MooApp.res.getColor(R.color.ic_yellow, null)
+    val red = MooApp.res.getColor(R.color.ic_red, null)
+    val grey = MooApp.res.getColor(R.color.grey, null)
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -42,13 +48,19 @@ class MooWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         super.onReceive(context, intent)
-
+        val cardSettings = context?.getSharedPreferences("pref", Context.MODE_PRIVATE)
         val action = intent!!.action ?: ""
         val syncRealmController = SyncRealmController()
         val repository = syncRealmController.getRepo()
         if (context != null && action == "addHappyCard") {
             Log.d("Tag", "Widget Clicked")
 
+            cardSettings?.edit {
+                putInt("happy_color", green)
+                putInt("neutral_color", grey)
+                putInt("unhappy_color", grey)
+                commit()
+            }
             GlobalScope.launch {
                 repository.addCard("","","happy")
 
@@ -56,7 +68,12 @@ class MooWidget : AppWidgetProvider() {
         }
         if (context != null && action == "addUnhappyCard") {
             Log.d("Tag", "Widget Clicked")
-
+            cardSettings?.edit {
+                putInt("happy_color", grey)
+                putInt("neutral_color", grey)
+                putInt("unhappy_color", red)
+                commit()
+            }
             GlobalScope.launch {
                 repository.addCard("","","unhappy")
 
@@ -64,8 +81,12 @@ class MooWidget : AppWidgetProvider() {
         }
         if (context != null && action == "addNeutralCard") {
             Log.d("Tag", "Widget Clicked")
-
-
+            cardSettings?.edit {
+                putInt("happy_color", grey)
+                putInt("neutral_color", yellow)
+                putInt("unhappy_color", grey)
+                commit()
+            }
             GlobalScope.launch {
                 repository.addCard("","","neutral")
 
