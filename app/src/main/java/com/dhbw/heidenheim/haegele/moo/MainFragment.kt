@@ -99,7 +99,7 @@ class MainFragment : Fragment() {
             val animX = ObjectAnimator.ofFloat(it, "scaleX", 0.3f, 1.05f, 0.9f, 1f).setDuration(500)
             val animY = ObjectAnimator.ofFloat(it, "scaleY", 0.3f, 1.05f, 0.9f, 1f).setDuration(500)
 
-            val colorAnimHappy = ObjectAnimator.ofArgb(binding.icUnhappy.drawable, "tint", grey)
+            val colorAnimHappy = ObjectAnimator.ofArgb(binding.icHappy.drawable, "tint", grey)
                 .setDuration(500)
             val colorAnimNeutral = ObjectAnimator.ofArgb(binding.icNeutral.drawable, "tint", grey)
                 .setDuration(500)
