@@ -36,6 +36,7 @@ class MooWidget : AppWidgetProvider() {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
 
+
     }
 
     override fun onEnabled(context: Context) {
@@ -54,6 +55,10 @@ class MooWidget : AppWidgetProvider() {
         val repository = syncRealmController.getRepo()
         if (context != null && action == "addHappyCard") {
             Log.d("Tag", "Widget Clicked")
+
+            val intent = Intent(context, MainFragment::class.java)
+            intent.action = "prefUpdated"
+            context.sendBroadcast(intent)
 
             cardSettings?.edit {
                 putInt("happy_color", green)

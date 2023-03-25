@@ -2,7 +2,10 @@ package com.dhbw.heidenheim.haegele.moo
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
@@ -25,6 +28,17 @@ import java.time.format.DateTimeFormatter
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == "prefUpdated") {
+                // Aktualisiere die Ansicht mit den neuen Daten aus den SharedPreferences
+                loadSettings()
+            }
+        }
+    }
+
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -235,4 +249,11 @@ class MainFragment : Fragment() {
 
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
+    override fun onResume() {
+        super.onResume()
+        // Registriere den BroadcastReceiver
+        requireActivity().registerReceiver(broadcastReceiver, IntentFilter("prefUpdated"))
+        // Aktualisiere die SharedPreferences
+        loadSettings()
+    }
 }
