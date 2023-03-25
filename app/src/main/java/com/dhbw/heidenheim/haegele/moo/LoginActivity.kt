@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             "bw" -> setTheme(R.style.bwTheme)
             "milka" -> setTheme(R.style.milkaTheme)
         }
-
+1
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,5 +1,6 @@
 package com.dhbw.heidenheim.haegele.moo
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentLoginBinding
 import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +37,12 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val cardSettings = context?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val green = MooApp.res.getColor(R.color.ic_green, null)
+        val yellow = MooApp.res.getColor(R.color.ic_yellow, null)
+        val red = MooApp.res.getColor(R.color.ic_red, null)
+        val grey = MooApp.res.getColor(R.color.grey, null)
+
 
         binding.registerButton.setOnClickListener {
             val email = binding.usernameEditText.text.toString()
@@ -49,15 +56,11 @@ class LoginFragment : Fragment() {
                     activity?.runOnUiThread {
                         Toast.makeText(view.context, R.string.register_toast, Toast.LENGTH_SHORT)
                             .show()
-                    }
-                    it.findNavController().navigate(R.id.login_to_app)
-                    (activity as LoginActivity).finish()
-                } else
-                    if (!isAdded) { return@launch }
-                    activity?.runOnUiThread {
-                        Toast.makeText(view.context, R.string.register_error_toast, Toast.LENGTH_SHORT)
+
+                        Toast.makeText(view.context, R.string.requestToLogin_toast, Toast.LENGTH_SHORT)
                             .show()
                     }
+                }
             }
         }
 
@@ -72,6 +75,14 @@ class LoginFragment : Fragment() {
                     if (!isAdded) { return@launch }
                     activity?.runOnUiThread {
                         Toast.makeText(view.context, R.string.login_toast, Toast.LENGTH_SHORT).show()
+                        cardSettings?.edit {
+                            putInt("happy_color", grey)
+                            putInt("neutral_color", grey)
+                            putInt("unhappy_color", grey)
+                            putString("note","")
+                            putString("highlight","")
+                            commit()
+                        }
                     }
                     it.findNavController().navigate(R.id.login_to_app)
                     (activity as LoginActivity).finish()
