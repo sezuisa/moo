@@ -2,7 +2,10 @@ package com.dhbw.heidenheim.haegele.moo
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
@@ -19,15 +22,23 @@ import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentMainBinding
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
 
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == "prefUpdated") {
+                // update the shared preferences
+                loadSettings()
+            }
+        }
+    }
+
     // This property is only valid between onCreateView and
-    // onDestroyView.
+    // onDestroyView
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -235,4 +246,15 @@ class MainFragment : Fragment() {
 
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
+    override fun onResume() {
+        super.onResume()
+        // register BroadcastReceiver
+        requireActivity().registerReceiver(broadcastReceiver, IntentFilter("prefUpdated"))
+        // update SharedPreferences
+        loadSettings()
+    }
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(broadcastReceiver)
+    }
 }
