@@ -1,5 +1,6 @@
 package com.dhbw.heidenheim.haegele.moo
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.content.res.Resources.Theme
 import android.graphics.Color
@@ -38,6 +39,7 @@ class ChartsFragment : Fragment() {
 
     }
 
+    @SuppressLint("StringFormatInvalid")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,46 +56,53 @@ class ChartsFragment : Fragment() {
         lifecycleScope.launch {
             var cardList = repository.getCardList(7)
             if (cardList != null) {
-                cardList.reverse()
+                if (!cardList.isEmpty()) {
+                    cardList.reverse()
 
-                lineData = getData(cardList)
-                val chart: LineChart = binding.chart
+                    lineData = getData(cardList)
+                    val chart: LineChart = binding.chart
 
-                setUpLineChart(chart)
-                chart.data = lineData
+                    setUpLineChart(chart)
+                    chart.data = lineData
 
-                // most common mood & number of happy-days
-                val topMood: Int
-                val moodColor: Int
-                val moodCounts: MutableMap<String, Int> = HashMap()
-                cardList.forEach { item ->
-                    moodCounts[item.mood] = moodCounts.getOrDefault(item.mood, 0) + 1
+                    // most common mood & number of happy-days
+                    val topMood: Int
+                    val moodColor: Int
+                    val moodCounts: MutableMap<String, Int> = HashMap()
+                    cardList.forEach { item ->
+                        moodCounts[item.mood] = moodCounts.getOrDefault(item.mood, 0) + 1
+                    }
+                    val max = moodCounts.maxBy { it.value }
+                    when (max.key) {
+                        "happy" -> {
+                            topMood = R.drawable.ic_happy
+                            moodColor = R.color.ic_green
+                        }
+                        "neutral" -> {
+                            topMood = R.drawable.ic_neutral
+                            moodColor = R.color.ic_yellow
+                        }
+                        "unhappy" -> {
+                            topMood = R.drawable.ic_unhappy
+                            moodColor = R.color.ic_red
+                        }
+                        else -> {
+                            topMood = R.drawable.ic_neutral
+                            moodColor = R.color.ic_yellow
+                        }
+                    }
+
+                    binding.chartsDepth.text = getString(R.string.duration, cardList.size)
+                    binding.chartsTopMood.setImageResource(topMood)
+                    binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(moodColor, null))
+                    binding.chartsNumHappyDays.text = moodCounts["happy"].toString()
+
+                } else {
+                    binding.chartsDepth.text = getString(R.string.statistics_no_data, cardList.size)
+                    binding.chartsTopMood.setImageResource(R.drawable.ic_neutral)
+                    binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(R.color.grey, null))
+                    binding.chartsNumHappyDays.text = "-"
                 }
-                val max = moodCounts.maxBy { it.value }
-                when (max.key) {
-                    "happy" -> {
-                        topMood = R.drawable.ic_happy
-                        moodColor = R.color.ic_green
-                    }
-                    "neutral" -> {
-                        topMood = R.drawable.ic_neutral
-                        moodColor = R.color.ic_yellow
-                    }
-                    "unhappy" -> {
-                        topMood = R.drawable.ic_unhappy
-                        moodColor = R.color.ic_red
-                    }
-                    else -> {
-                        topMood = R.drawable.ic_neutral
-                        moodColor = R.color.ic_yellow
-                    }
-                }
-
-                binding.chartsDepth.text = getString(R.string.duration, cardList.size)
-                binding.chartsTopMood.setImageResource(topMood)
-                binding.chartsTopMood.drawable.setTint(MooApp.res.getColor(moodColor, null))
-                binding.chartsNumHappyDays.text = moodCounts["happy"].toString()
-
             }
         }
 

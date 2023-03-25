@@ -12,6 +12,7 @@
     <string name="highlight_text">Fancy dinner</string>
     <string name="statistics">Statistics</string>
     <string name="duration">Past %1$d days</string>
+    <string name="statistics_no_data">No data available</string>
     <string name="statistics_highlights">Highlights</string>
     <string name="statistics_mood">Most common mood</string>
     <string name="statistics_happydays">Happy-Days</string>
