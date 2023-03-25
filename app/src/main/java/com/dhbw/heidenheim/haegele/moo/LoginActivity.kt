@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.PreferenceManager
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityLoginBinding
 import com.mongodb.app.data.AuthRepository
 import com.mongodb.app.data.RealmAuthRepository
@@ -20,6 +21,16 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+
+        when (sp.getString("theme", "brown")) {
+            "brown" -> setTheme(R.style.brownTheme)
+            "bw" -> setTheme(R.style.bwTheme)
+            "milka" -> setTheme(R.style.milkaTheme)
+        }
+
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -55,7 +55,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_happy"
-                    app:tint="#9CCA9E"
+                    app:tint="@color/ic_green"
                     android:layout_margin="10dp"
                     />
                 <ImageView
@@ -63,7 +63,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_neutral"
-                    app:tint="#FFCC81"
+                    app:tint="@color/ic_yellow"
                     android:layout_margin="10dp"
                     />
                 <ImageView
@@ -71,7 +71,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_unhappy"
-                    app:tint="#FF8686"
+                    app:tint="@color/ic_red"
                     android:layout_margin="10dp"
                     />
             </LinearLayout>
@@ -93,7 +93,7 @@
                     android:padding="10dp"
                     android:gravity="center"
                     android:textSize="9pt"
-                    android:textColor="#C48C66"
+                    android:textColor="?attr/colorPrimary"
                     />
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="200dp"
@@ -107,7 +107,7 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:textSize="13pt"
-                    android:textColor="#C48C66"
+                    android:textColor="?attr/colorPrimary"
                     />
                 <TextView
                     android:id="@+id/item_highlight"
@@ -118,7 +118,7 @@
                     android:padding="10dp"
                     android:gravity="center"
                     android:textSize="11pt"
-                    android:textColor="#887669"
+                    android:textColor="?attr/colorPrimaryVariant"
                     />
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="200dp"
@@ -137,7 +137,7 @@
                         android:fontFamily="@font/arial_rounded_bold"
                         android:scrollbars="vertical"
                         android:text="@string/lorem_ipsum"
-                        android:textColor="#887669"
+                        android:textColor="?attr/colorPrimaryVariant"
                         android:textSize="9pt" />
                 </ScrollView>
             </LinearLayout>

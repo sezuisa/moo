@@ -31,16 +31,19 @@ class CardStackAdapter(
 
         when (card.mood) {
             "happy" -> {
+                holder.moodHappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.ic_green, null))
                 holder.moodNeutral.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
                 holder.moodUnhappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
             }
             "neutral" -> {
                 holder.moodHappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+                holder.moodNeutral.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.ic_yellow, null))
                 holder.moodUnhappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
             }
             "unhappy" -> {
                 holder.moodHappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
                 holder.moodNeutral.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.grey, null))
+                holder.moodUnhappy.drawable.setTint(ResourcesCompat.getColor(MooApp.res, R.color.ic_red, null))
             }
         }
 

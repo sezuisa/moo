@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Moo</string>
+    <string name="app_name_lowercase">moo</string>
     <string name="hello">Hello, %1$s!</string>
     <string name="how_are_you">How are you feeling today?</string>
     <string name="date">21. February 2023</string>
@@ -32,4 +33,5 @@
     <string name="register_button">Register</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
+    <string name="widget_mood_title">Today\'s mood</string>
 </resources>

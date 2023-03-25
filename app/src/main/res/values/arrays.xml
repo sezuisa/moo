@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="pref_history_depth">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+    <array name="pref_theme">
+        <item>Brown</item>
+        <item>Black/White</item>
+        <item>Milka</item>
+    </array>
+    <array name="pref_theme_values">
+        <item>brown</item>
+        <item>bw</item>
+        <item>milka</item>
     </array>
 </resources>

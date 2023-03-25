@@ -114,7 +114,7 @@ class HistoryFragment : Fragment(), CardStackListener {
 
     private fun paginate() {
         val old = adapter.getCards()
-        val new = old.plus(createCards())
+        val new = createCards()
         val callback = CardDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
         adapter.setCards(new)

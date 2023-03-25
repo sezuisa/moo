@@ -6,6 +6,8 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="almost_black">#191919</color>
+    <color name="dark_grey">#494949</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_translucent">#B3FFFFFF</color>
     <color name="card_background">#C48C66</color>
@@ -21,5 +23,8 @@
     <color name="ic_green">#9CCA9E</color>
     <color name="ic_yellow">#FFCC81</color>
     <color name="ic_red">#FF8686</color>
+    <color name="milka_main">#9e74c4</color>
+    <color name="milka_secondary">#C5ABDD</color>
+    <color name="milka_dark">#392050</color>
 
 </resources>

@@ -11,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.PreferenceManager
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityMainBinding
 import io.realm.kotlin.mongodb.Credentials
@@ -27,6 +28,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+
+        when (sp.getString("theme", "brown")) {
+            "brown" -> setTheme(R.style.brownTheme)
+            "bw" -> setTheme(R.style.bwTheme)
+            "milka" -> setTheme(R.style.milkaTheme)
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -13,6 +13,14 @@
             android:max="7"
             app:showSeekBarValue="true"
             />
+        <ListPreference
+            app:key="theme"
+            app:title="App Theme (restart required)"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="Brown"
+            app:persistent="true"
+            app:entries="@array/pref_theme"
+            app:entryValues="@array/pref_theme_values"/>
     </PreferenceCategory>
 
     <PreferenceCategory

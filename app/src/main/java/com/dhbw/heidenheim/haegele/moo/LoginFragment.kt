@@ -1,5 +1,6 @@
 package com.dhbw.heidenheim.haegele.moo
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentLoginBinding
+import com.google.android.material.color.MaterialColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +31,7 @@ class LoginFragment : Fragment() {
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-
+        binding.loginLogo.drawable.setTint(MaterialColors.getColor(requireContext(), com.google.android.material.R.attr.colorPrimary, Color.BLACK))
         return binding.root
     }
 

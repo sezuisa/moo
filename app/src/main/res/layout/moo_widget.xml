@@ -4,48 +4,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/white"
-    android:theme="@style/Theme.Moo.AppWidgetContainer">
+    android:theme="@style/Theme.Moo.AppWidgetContainer"
+    android:padding="0dp">
 
-
-    <LinearLayout
-        android:id="@+id/linearContainer"
+    <ImageView
+        android:id="@+id/widget_gradient"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:layout_height="match_parent"
+        android:src="@drawable/bottom_nav_gradient"
+        android:layout_alignParentBottom="true"
+        android:tint="@color/light_brown"/>
 
-        <ImageButton
-            android:id="@+id/wbtnHappy"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:src="@drawable/ic_happy"
-            android:backgroundTint="@color/white"
-            android:tint="@color/ic_green"
-            android:scaleType="fitXY" />
+    <ImageView
+        android:id="@+id/widget_cowspot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_spot_left"
+        android:rotation="90"
+        android:layout_marginTop="-70dp"
+        android:layout_alignParentStart="true"
+        android:tint="@color/brown"
+        />
 
-        <ImageButton
-            android:id="@+id/wbtnNeutral"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:src="@drawable/ic_neutral"
-            android:backgroundTint="@color/white"
-            android:tint="@color/ic_yellow"
-            android:scaleType="fitXY"
+    <ImageView
+        android:id="@+id/widget_logo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_moo_full"
+        android:tint="@color/white"
+        />
 
-            />
+        <LinearLayout
+            android:id="@+id/linearContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@id/widget_logo"
+            >
 
-        <ImageButton
-            android:id="@+id/wbtnSad"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:src="@drawable/ic_unhappy"
-            android:backgroundTint="@color/white"
-            android:tint="@color/ic_red"
-            android:scaleType="fitXY"
+            <ImageButton
+                android:id="@+id/wbtnHappy"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_happy"
+                android:backgroundTint="@color/white_translucent"
+                android:background="@drawable/rounded_corners"
+                android:layout_margin="5dp"
+                android:tint="@color/ic_green"
+                android:scaleType="fitXY" />
 
+            <ImageButton
+                android:id="@+id/wbtnNeutral"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_neutral"
+                android:backgroundTint="@color/white_translucent"
+                android:background="@drawable/rounded_corners"
+                android:layout_margin="5dp"
+                android:tint="@color/ic_yellow"
+                android:scaleType="fitXY"
+                />
 
-            />
+            <ImageButton
+                android:id="@+id/wbtnSad"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_unhappy"
+                android:backgroundTint="@color/white_translucent"
+                android:background="@drawable/rounded_corners"
+                android:layout_margin="5dp"
+                android:tint="@color/ic_red"
+                android:scaleType="fitXY"
+                />
+
     </LinearLayout>
 
 
