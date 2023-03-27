@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HistoryFragment"
+    android:clipChildren="false"
     android:orientation="vertical"
-    android:clipChildren="false">
+    tools:context=".HistoryFragment">
 
     <TextView
         android:id="@+id/txt_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/history"
-        android:textSize="18pt"
-        android:textColor="@color/white"
-        android:fontFamily="@font/friskily"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
-        />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/friskily"
+        android:text="@string/history"
+        android:textColor="@color/white"
+        android:textSize="18pt" />
 
     <TextView
         android:id="@+id/txt_history_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/history_subtitle"
-        android:textSize="10pt"
-        android:textColor="?attr/colorSecondary"
-        android:fontFamily="@font/arial_rounded_bold"
         android:layout_below="@id/txt_history"
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
-        />
+        android:fontFamily="@font/arial_rounded_bold"
+        android:text="@string/history_subtitle"
+        android:textColor="?attr/colorSecondaryVariant"
+        android:textSize="10pt" />
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_card"
-        android:padding="4dp"
-        android:clipToPadding="false"
         android:layout_below="@id/txt_history_subtitle"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        tools:listitem="@layout/item_card" />
 
 </RelativeLayout>

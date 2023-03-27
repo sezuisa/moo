@@ -1,12 +1,8 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-        android:color="@color/white">
+        android:color="?android:attr/colorBackground">
     </solid>
-    <stroke
-        android:width="0dp"
-        android:color="#424242">
-    </stroke>
     <corners
         android:topLeftRadius="0dip"
         android:topRightRadius="0dip"

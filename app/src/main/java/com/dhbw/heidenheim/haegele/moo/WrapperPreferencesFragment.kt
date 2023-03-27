@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dhbw.heidenheim.haegele.moo.databinding.FragmentMainBinding
 import com.dhbw.heidenheim.haegele.moo.databinding.FragmentWrapperPreferencesBinding
 
 class WrapperPreferencesFragment : Fragment() {
@@ -21,10 +20,10 @@ class WrapperPreferencesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWrapperPreferencesBinding.inflate(inflater, container, false)
 
-        val frag: PreferencesFragment = PreferencesFragment()
+        val frag = PreferencesFragment()
         childFragmentManager
             .beginTransaction()
             .replace(binding.preferencesContent.id, frag)

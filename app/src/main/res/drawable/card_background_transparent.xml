@@ -1,12 +1,8 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-        android:color="@color/white_translucent">
+        android:color="?attr/cardTopColor">
     </solid>
-    <stroke
-        android:width="0dp"
-        android:color="#424242">
-    </stroke>
     <corners
         android:radius="20dip">
     </corners>

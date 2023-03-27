@@ -1,16 +1,18 @@
 package com.dhbw.heidenheim.haegele.moo
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dhbw.heidenheim.haegele.moo.data.domain.Item
 import com.dhbw.heidenheim.haegele.moo.databinding.ItemCardBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+
 
 class CardStackAdapter(
     private var cards: List<Item> = emptyList()
@@ -47,8 +49,8 @@ class CardStackAdapter(
             }
         }
 
-        holder.itemView.setOnClickListener { v ->
-            Toast.makeText(v.context, dateStamp, Toast.LENGTH_SHORT).show()
+        holder.note.setOnClickListener {
+            showAlertDialog(it.context, (it as TextView).text as String)
         }
     }
 
@@ -72,6 +74,14 @@ class CardStackAdapter(
         var moodHappy: ImageView = binding.itemMoodHappy
         var moodNeutral: ImageView = binding.itemMoodNeutral
         var moodUnhappy: ImageView = binding.itemMoodUnhappy
+    }
+
+    private fun showAlertDialog(context: Context, stringToShow: String) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setMessage(stringToShow)
+        builder.setCancelable(true)
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 
 }

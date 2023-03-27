@@ -1,18 +1,13 @@
 package com.dhbw.heidenheim.haegele.moo
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityLoginBinding
 import com.mongodb.app.data.AuthRepository
 import com.mongodb.app.data.RealmAuthRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class LoginActivity : AppCompatActivity() {
