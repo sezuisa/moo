@@ -3,10 +3,10 @@
      android:drawable="@drawable/ic_animated_chart">
 
     <target
-        android:animation="@animator/home_path_morph"
+        android:animation="@animator/nav_path_morph"
         android:name="path_1"/>
     <target
-        android:animation="@animator/home_path_morph"
+        android:animation="@animator/nav_path_morph"
         android:name="path_2"/>
 
 </animated-vector>

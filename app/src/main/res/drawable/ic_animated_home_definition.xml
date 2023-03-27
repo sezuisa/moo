@@ -3,5 +3,5 @@
     android:drawable="@drawable/ic_animated_home">
     <target
         android:name="path"
-        android:animation="@animator/home_path_morph"/>
+        android:animation="@animator/nav_path_morph"/>
 </animated-vector>

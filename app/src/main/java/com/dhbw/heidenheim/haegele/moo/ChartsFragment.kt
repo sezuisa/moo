@@ -1,15 +1,11 @@
 package com.dhbw.heidenheim.haegele.moo
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.graphics.Color
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController

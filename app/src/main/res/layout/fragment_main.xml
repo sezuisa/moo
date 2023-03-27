@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -11,26 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp"
-        />
+        app:layout_constraintGuide_begin="30dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="30dp"
-        />
+        app:layout_constraintGuide_end="30dp" />
 
     <TextView
         android:id="@+id/txt_hello"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello"
-        android:textSize="18pt"
-        android:textColor="@color/white"
-        android:fontFamily="@font/friskily"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/friskily"
+        android:text="@string/hello"
+        android:textColor="@color/white"
+        android:textSize="18pt"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/gl_left"
@@ -40,10 +38,10 @@
         android:id="@+id/txt_how_are_you"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/how_are_you"
-        android:textSize="10pt"
-        android:textColor="?attr/colorSecondary"
         android:fontFamily="@font/arial_rounded_bold"
+        android:text="@string/how_are_you"
+        android:textColor="?attr/colorSecondaryVariant"
+        android:textSize="10pt"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/gl_left"
@@ -54,126 +52,127 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="txt_how_are_you"
-        />
+        app:constraint_referenced_ids="txt_how_are_you" />
 
     <LinearLayout
         android:id="@+id/lay_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/card_background_transparent"
-        android:orientation="vertical"
         android:elevation="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gl_right"
         app:layout_constraintStart_toStartOf="@+id/gl_left"
-        app:layout_constraintTop_toBottomOf="@+id/bar_hellotext"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp">
+        app:layout_constraintTop_toBottomOf="@+id/bar_hellotext">
 
         <LinearLayout
             android:id="@+id/lay_card_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:background="@drawable/rounded_corners_top_transparent"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/rounded_corners_top"
-            >
+            app:layout_constraintStart_toStartOf="parent">
+
             <ImageView
                 android:id="@+id/ic_happy"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_happy"
-                app:tint="@color/grey"
                 android:layout_margin="10dp"
-                />
+                android:src="@drawable/ic_happy"
+                app:tint="@color/grey" />
+
             <ImageView
                 android:id="@+id/ic_neutral"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_neutral"
-                app:tint="@color/grey"
                 android:layout_margin="10dp"
-                />
+                android:src="@drawable/ic_neutral"
+                app:tint="@color/grey" />
+
             <ImageView
                 android:id="@+id/ic_unhappy"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_unhappy"
-                app:tint="@color/grey"
                 android:layout_margin="10dp"
-                />
+                android:src="@drawable/ic_unhappy"
+                app:tint="@color/grey" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/rounded_corners_bottom"
-            >
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
             <TextView
                 android:id="@+id/dateOfCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/date"
                 android:fontFamily="@font/arial_rounded_bold"
-                android:padding="10dp"
                 android:gravity="center"
-                android:textSize="9pt"
+                android:padding="10dp"
+                android:text="@string/date"
                 android:textColor="?attr/colorPrimary"
-                />
+                android:textSize="9pt" />
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                />
+                app:dividerColor="?android:attr/colorSecondary" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/highlight_header"
                 android:fontFamily="@font/friskily"
-                android:padding="5dp"
                 android:gravity="center"
-                android:textSize="13pt"
+                android:padding="5dp"
+                android:text="@string/highlight_header"
                 android:textColor="?attr/colorPrimary"
-                />
+                android:textSize="13pt" />
+
             <EditText
                 android:id="@+id/main_highlight"
-                android:maxLength="20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/item_highlight_hint"
-                android:gravity="center"
-                android:fontFamily="@font/arial_rounded_bold"
-                android:padding="10dp"
-                android:textSize="11pt"
-                android:textColor="?attr/colorPrimaryVariant"
                 android:background="@color/transparent"
-                />
+                android:fontFamily="@font/arial_rounded_bold"
+                android:gravity="center"
+                android:hint="@string/item_highlight_hint"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="10dp"
+                android:textColor="?attr/colorPrimaryVariant"
+                android:textSize="11pt" />
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                />
+                app:dividerColor="?android:attr/colorSecondary" />
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
-                >
+                android:padding="20dp">
+
                 <EditText
                     android:id="@+id/txt_freetext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arial_rounded_bold"
-                    android:scrollbars="vertical"
-                    android:hint="@string/main_note_hint"
                     android:background="@color/transparent"
+                    android:fontFamily="@font/arial_rounded_bold"
+                    android:hint="@string/main_note_hint"
+                    android:scrollbars="vertical"
                     android:textColor="?attr/colorPrimaryVariant"
                     android:textSize="9pt" />
+
             </ScrollView>
         </LinearLayout>
     </LinearLayout>

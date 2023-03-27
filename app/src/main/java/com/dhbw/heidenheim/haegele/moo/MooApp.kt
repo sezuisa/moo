@@ -2,7 +2,6 @@ package com.dhbw.heidenheim.haegele.moo
 
 import android.app.Application
 import android.content.res.Resources
-import androidx.core.content.ContextCompat
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.AppConfiguration
 

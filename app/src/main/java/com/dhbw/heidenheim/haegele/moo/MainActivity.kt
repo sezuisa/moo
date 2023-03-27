@@ -1,22 +1,14 @@
 package com.dhbw.heidenheim.haegele.moo
 
-import android.R.drawable
-import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.edit
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
 import com.dhbw.heidenheim.haegele.moo.data.SyncRealmController
 import com.dhbw.heidenheim.haegele.moo.databinding.ActivityMainBinding
-import io.realm.kotlin.mongodb.Credentials
-import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 
 class MainActivity : AppCompatActivity() {
